@@ -1,4 +1,4 @@
-# Projeto: Curso Udemy - Arquitetura de Microsserviços: Padrão Saga Orquestrado
+# Arquitetura de Microsserviços: Padrão Saga Orquestrado
 
 ![Arquitetura](Conte%C3%BAdos/Imagem%20Curso.png)
 
