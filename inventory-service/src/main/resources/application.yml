@@ -1,0 +1,43 @@
+server:
+  port: 8092
+
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER:192.168.1.12:9092}
+    topic:
+      orchestrator: orchestrator
+      inventory-success: inventory-success
+      inventory-fail: inventory-fail
+    consumer:
+      group-id: payment-group
+      auto-offset-reset: latest
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST:192.168.1.12}:${DB_PORT:5435}/${DB_NAME:inventory-db}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:234696}
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 2
+      idle-timeout: 30000
+      pool-name: InventoryService
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      validation-timeout: 5000
+      leak-detection-threshold: 2000
+      auto-commit: true
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      open-in-view: false
+
+logging:
+  level:
+    org:
+      apache:
+        kafka: OFF
